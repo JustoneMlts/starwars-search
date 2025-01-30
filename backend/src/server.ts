@@ -13,7 +13,6 @@ const init = async () => {
         host: 'localhost'
     });
 
-    // Définition des types
     interface SearchQuery {
         q: string;
     }
@@ -25,10 +24,12 @@ const init = async () => {
 
     server.route({
         method: 'GET',
-        path: '/api',
+        path: '/',
+        handler: async (request, h) => {
+            return h.response("connected").code(200);
+        }
     })
 
-    // Endpoint de recherche globale sur toutes les catégories
     server.route({
         method: 'GET',
         path: '/search',
@@ -60,7 +61,6 @@ const init = async () => {
         }
     });
 
-    // Système d'authentification simple
     server.route({
         method: 'POST',
         path: '/login',
